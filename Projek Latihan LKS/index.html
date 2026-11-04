@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shooter Game</title>
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+
+  <div id="game-container">
+
+    <div id="welcome-screen" class="screen">
+      <img src="assets/shooter.png" alt="Shooter Logo" class="logo">
+      <input type="text" id="username" placeholder="Masukkan Username...">
+
+      <select id="level-select">
+        <option value="" disabled selected>Pilih Level</option>
+        <option value="easy">Easy (30 Detik)</option>
+        <option value="medium">Medium (20 Detik)</option>
+        <option value="hard">Hard (15 Detik)</option>
+      </select>
+
+      <div class="option-group">
+        <label for="gun1" class="gun-target">
+          <img src="assets/gun1.png" style="width: 95px;">
+          <br>
+          <input type="radio" name="gun" value="gun1" checked>
+        </label>
+        <label for="gun2" class="gun-target">
+          <img src="assets/gun2.png" style="width: 100px">
+          <br>
+          <input type="radio" name="gun" value="gun2">
+        </label>
+      </div>
+
+      <div class="option-group">
+        <label for="target1" class="gun-target">
+          <img src="assets/target1.png" style="width: 100px;">
+          <br>
+          <input type="radio" name="target" value="target1.png" checked>
+        </label>
+        <label for="target2" class="gun-target">
+          <img src="assets/target2.png" style="width: 100px;">
+          <br>
+          <input type="radio" name="target" value="target2.png">
+        </label>
+        <label for="target3" class="gun-target">
+          <img src="assets/target3.png" style="width: 100px;">
+          <br>
+          <input type="radio" name="target" value="target3.png">
+        </label>
+      </div>
+
+      <div class="button-group">
+        <button id="btn-play" disabled>Play Game</button>
+        <button id="btn-instruction">Instruction</button>
+      </div>
+    </div>
+
+    <div id="instruction-modal" class="modal hidden">
+      <div class="modal-content">
+        <span id="btn-close-instruction" class="close">&times;</span>
+        <h2>Cara Bermain</h2>
+        <ol>
+          <li>Masukkan username kamu.</li>
+          <li>Arahkan pointer ke target.</li>
+          <li>Klik untuk menembak.</li>
+          <li>Tekan Spasi untuk mengganti senjata.</li>
+          <li>Tekan Esc untuk Pause game.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div id="game-screen" class="screen hidden">
+      <div class="top-bar">
+        <div>Player: <span id="display-name">-</span></div>
+        <div>Skor: <span id="display-score">0</span></div>
+        <div>Waktu: <span id="display-timer">00:00</span></div>
+      </div>
+
+      <div id="play-area">
+        <img src="assets/background.jpg" alt="background">
+
+        <div id="crosshair">
+          <img src="assets/pointer.png" alt="pointer">
+        </div>
+        <img id="gun-image" src="assets/gun1.png" alt="Gun">
+
+      </div>
+
+      <div id="leaderboard-sidebar">
+        <h3>LEADERBOARD</h3>
+        <select id="sort-leaderboard">
+          <option value="score">Urutkan Skor</option>
+          <option value="latest">Urutkan Terbaru</option>
+        </select>
+        <ul id="history-list"></ul>
+      </div>
+    </div>
+
+    <div id="overlay" class="overlay hidden">
+      <h1 id="overlay-text">3</h1>
+      <button id="btn-continue" class="hidden">Lanjutkan</button>
+    </div>
+
+    <div id="gameover-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Game Over!</h2>
+        <p>Pemain: <span id="final-name"></span></p>
+        <p>Skor Akhir: <span id="final-score"></span></p>
+        <button id="btn-save-score">Simpan Skor</button>
+        <button id="btn-restart">Main Lagi</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="Javascript/game.js"></script>
+  <script src="Javascript/gun.js"></script>
+  <script src="Javascript/player.js"></script>
+  <script src="Javascript/target.js"></script>
+  <script src="Javascript/timer.js"></script>
+</body>
+
+</html>

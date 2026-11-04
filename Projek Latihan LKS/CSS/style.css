@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Layout Tablet Fix 1000x600 */
+#game-container {
+  width: 1000px;
+  height: 600px;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Screen Welcome */
+#welcome-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: #f4f4f4;
+  border: 5px solid grey;
+}
+
+.logo {
+  height: 120px;
+}
+
+input[type="text"], select {
+  padding: 8px 12px;
+  width: 250px;
+  font-size: 16px;
+  border: 3px solid grey;
+  border-radius: 5px;
+}
+
+.option-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.gun-target {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: white;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Screen Game */
+#game-screen {
+  display: flex;
+}
+
+#play-area {
+  flex: 1 1 auto;
+  background: url('assets/background.jpg');
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+}
+
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 750px;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  z-index: 5;
+}
+
+/* Crosshair & Gun & Boom */
+#crosshair {
+  width: 40px;
+  height: 40px;
+  background: url('assets/pointer.png') no-repeat center/contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+#gun-image {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 220px;
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+  z-index: 9;
+}
+
+.gun-swap-anim {
+  animation: swapGun 0.3s ease;
+}
+
+@keyframes swapGun {
+  0% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(100px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+.boom-effect {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  animation: boomAnim 0.3s ease-out forwards;
+  z-index: 4;
+}
+
+@keyframes boomAnim {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Target */
+.target-item {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  animation: popUp 0.3s ease-out;
+  z-index: 3;
+}
+
+@keyframes popUp {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+/* Leaderboard Sidebar */
+#leaderboard-sidebar {
+  width: 250px;
+  height: 600px;
+  background-color: #1e1e1e;
+  color: white;
+  padding: 15px;
+}
+
+#history-list {
+  list-style: none;
+  margin-top: 15px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+#history-list li {
+  padding: 8px;
+  border-bottom: 1px solid #444;
+  font-size: 14px;
+}
+
+/* Modals & Overlay */
+.modal, .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1000px;
+  height: 600px;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  color: white;
+}
+
+.modal-content {
+  background: #333;
+  padding: 25px;
+  border-radius: 8px;
+  min-width: 300px;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-bottom: 10px;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
